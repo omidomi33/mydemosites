@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services & Subscription | Suresh Sharma</title>
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary-color: #0f172a; /* Dark Blue */
+            --secondary-color: #334155; /* Slate */
+            --accent-color: #2563eb; /* Bright Blue */
+            --success-color: #10b981; /* Green */
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-radius: 12px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- HEADER --- */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .brand-name { font-size: 1.5rem; font-weight: bold; }
+        .sebi-reg { font-size: 0.9rem; opacity: 0.9; background: rgba(255,255,255,0.1); padding: 4px 12px; border-radius: 20px; align-self: center; display: inline-block; }
+        .experience { font-size: 0.9rem; color: #94a3b8; }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(to bottom, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 { font-size: 2.5rem; margin-bottom: 1rem; }
+        .hero p { max-width: 700px; margin: 0 auto; opacity: 0.9; font-size: 1.1rem; }
+        .telegram-link {
+            display: inline-block;
+            margin-top: 1rem;
+            background-color: #0088cc;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+        .telegram-link:hover { transform: translateY(-2px); }
+
+        /* --- PRICING CONTAINER --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem 3rem 1rem;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        /* --- PRICING CARD --- */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            padding: 1.5rem;
+            background-color: #f1f5f9;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .card-body {
+            padding: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .price-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .duration { font-weight: 600; color: var(--secondary-color); }
+        .amount { font-weight: bold; color: var(--success-color); font-size: 1.1rem; }
+
+        /* --- BANK DETAILS --- */
+        .payment-section {
+            background-color: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 2rem;
+            margin-top: 2rem;
+            border-top: 4px solid var(--accent-color);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+        }
+
+        .bank-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .bank-details, .upi-details {
+            padding: 1rem;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.8rem;
+            border-bottom: 1px dashed #e2e8f0;
+            padding-bottom: 0.4rem;
+        }
+        .label { color: var(--text-muted); font-size: 0.9rem; }
+        .value { font-weight: 600; text-align: right; }
+
+        .note {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1rem;
+            background-color: #fff1f2;
+            color: #be123c;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a:hover { text-decoration: underline; color: var(--accent-color); }
+        .copy { font-size: 0.8rem; opacity: 0.6; }
+
+        /* Mobile tweaks */
+        @media (max-width: 600px) {
+            .hero h1 { font-size: 1.8rem; }
+            .card-title { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <div class="brand-name">Suresh Sharma</div>
+            <div class="sebi-reg">SEBI Reg. No: INH000000651</div>
+            <div class="experience">28 Years of Experience • Call: 9892532183</div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Services & Subscription</h1>
+        <p>Expert market analysis for Nifty, Banknifty, and Stocks. Join our premium services today.</p>
+        <a href="https://t.me/sureshsharma1" target="_blank" class="telegram-link">Join Free Telegram Channel</a>
+    </section>
+
+    <div class="container">
+        
+        <div class="pricing-grid">
+            
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">1. NIFTY50 + Banknifty & Stocks</div>
+                </div>
+                <div class="card-body">
+                    <p class="card-desc">
+                        Intraday & Position calls. Advance levels for Nifty50, Banknifty + 4-6 stocks. Levels are spot; trade Future & Options accordingly. Includes "How To Trade" guidance.
+                    </p>
+                    <div class="price-list">
+                        <div class="price-item">
+                            <span class="duration">Monthly</span>
+                            <span class="amount">₹6,000</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="duration">Quarterly</span>
+                            <span class="amount">₹15,000</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="duration">Yearly</span>
+                            <span class="amount">₹41,000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">2. HNI CALLS</div>
+                </div>
+                <div class="card-body">
+                    <p class="card-desc">
+                        Highly specialized calls on exact reversal times. Holding period: 2-8 days with daily progressive Stop Loss. Frequency: 1-2 calls/month. Trade F&O on spot levels.
+                    </p>
+                    <div class="price-list">
+                        <div class="price-item">
+                            <span class="duration">Monthly</span>
+                            <span class="amount">-</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="duration">Quarterly</span>
+                            <span class="amount">₹20,000</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="duration">Yearly</span>
+                            <span class="amount">₹50,000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">3. Cash Equity Swing Trading</div>
+                </div>
+                <div class="card-body">
+                    <p class="card-desc">
+                        Strategic views for Short Term, Medium Term, and Long Term investment in Cash Equity markets.
+                    </p>
+                    <div class="price-list">
+                        <div class="price-item">
+                            <span class="duration">Monthly</span>
+                            <span class="amount">-</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="duration">Quarterly</span>
+                            <span class="amount">₹8,000</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="duration">Yearly</span>
+                            <span class="amount">₹20,000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">4. COMBO PACK</div>
+                </div>
+                <div class="card-body">
+                    <p class="card-desc">
+                        <strong>All-in-One:</strong> Nifty50 + Banknifty + Stocks (Intraday & Position) <br>+<br> Cash Equity Swing Trading (Short/Medium/Long Term).
+                    </p>
+                    <div class="price-list">
+                        <div class="price-item">
+                            <span class="duration">Monthly</span>
+                            <span class="amount">-</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="duration">Quarterly</span>
+                            <span class="amount">₹21,000</span>
+                        </div>
+                        <div class="price-item">
+                            <span class="duration">Yearly</span>
+                            <span class="amount">₹51,000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="payment-section">
+            <h2 class="section-title">Payment Options</h2>
+            <div class="bank-grid">
+                <div class="bank-details">
+                    <h3>Bank Transfer</h3>
+                    <br>
+                    <div class="detail-row">
+                        <span class="label">Bank</span>
+                        <span class="value">Kotak Mahindra Bank</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">Beneficiary</span>
+                        <span class="value">Suresh Shriram Sharma</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">Account No.</span>
+                        <span class="value">0149868189</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">IFSC Code</span>
+                        <span class="value">KKBK0001398</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">Branch</span>
+                        <span class="value">Mumbai - Borivali East</span>
+                    </div>
+                </div>
+
+                <div class="upi-details">
+                    <h3>UPI & Wallets</h3>
+                    <br>
+                    <div class="detail-row">
+                        <span class="label">GPay / PhonePe</span>
+                        <span class="value">9892532183</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">UPI ID 1</span>
+                        <span class="value">989253183@kotak</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="label">UPI ID 2</span>
+                        <span class="value">9892532183-2@ibl</span>
+                    </div>
+                    <div style="margin-top:1.5rem; text-align: center; color: var(--success-color); font-weight: bold;">
+                        <p>Send screenshot to WhatsApp after payment</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="note">
+                <strong>Important:</strong> Service will resume within 24 hours of receipt of payment. Fees paid are non-refundable. Please inform your payment details via Email & WhatsApp to register for communications.
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#">Disclaimer</a>
+            <a href="#">Disclosures</a>
+            <a href="#">Investor Charter</a>
+            <a href="#">Grievance Redressal</a>
+            <a href="#">Escalation Matrix</a>
+            <a href="#">Audit Report</a>
+        </div>
+        <div class="copy">
+            &copy; 2024 Suresh Sharma. All Rights Reserved. <br>
+            <span style="font-size: 0.75rem;">SEBI REG. NO: INH000000651</span>
+        </div>
+    </footer>
+
+</body>
+</html>
